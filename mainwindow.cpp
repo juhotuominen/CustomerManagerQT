@@ -21,16 +21,16 @@ MainWindow::MainWindow(QWidget *parent)
     {
         if(DB.open())
         {
-            ui->label->setText("Connected...");
+            ui->labelStatus->setText("Connected...");
         }
         else
         {
-            ui->label->setText("Error: " + DB.lastError().text());
+            ui->labelStatus->setText("Error: " + DB.lastError().text());
         }
     }
     else
     {
-        ui->label->setText("Failed to open the database!");
+        ui->labelStatus->setText("Failed to open the database!");
     }
 
     on_btnGet_clicked();
@@ -46,19 +46,30 @@ MainWindow::~MainWindow()
 }
 
 
+/**********
+ * FUNCTION
+ * Setup table at the start of program
+**************/
+
 void MainWindow::setupTableWidget()
 {
     // Number of columns
-    ui->tableWidget->setColumnCount(7);
+    ui->tableWidget->setColumnCount(9);
 
     // Header labels for each column
     QStringList headers;
-    headers << "ID" << "Etunimi" << "Sukunimi" << "Hetu" << "Osoite" << "Puhelinnumero" << "Email";
+    headers << "ID" << "Etunimi" << "Sukunimi" << "Hetu" << "Osoite" << "Puhelinnumero" << "Email" << "Esitiedot" << "Kommentit";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
     // Adjust column widths if needed
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
+
+
+/**********
+ * FUNCTION
+ * Get data from lineEdits to be added for new customer
+***********/
 
 QStringList MainWindow::getData() const
 {
@@ -74,6 +85,11 @@ QStringList MainWindow::getData() const
     return data;
 }
 
+
+/**********
+ * FUNCTION
+ * Add new customer to database and table view
+***********/
 
 void MainWindow::on_btnAdd_clicked()
 {
@@ -102,7 +118,10 @@ void MainWindow::on_btnAdd_clicked()
 }
 
 
-
+/**********
+ * FUNCTION
+ * Remove customer from database and table view
+***********/
 
 void MainWindow::on_btnRemove_clicked()
 {
@@ -131,6 +150,12 @@ void MainWindow::on_btnRemove_clicked()
         QMessageBox::information(this, "Remove Row", "No row selected to remove.");
     }
 }
+
+
+/**********
+ * FUNCTION
+ * Get informations from database (used as refresh)
+***********/
 
 void MainWindow::on_btnGet_clicked()
 {
@@ -168,7 +193,11 @@ void MainWindow::on_btnGet_clicked()
 }
 
 
-
+/**********
+ * FUNCTION
+ * Get informations from database with spesific customer,
+ * search with letter or fullname/socialsecurity
+***********/
 
 void MainWindow::on_btnSearch_clicked()
 {
@@ -196,6 +225,7 @@ void MainWindow::on_btnSearch_clicked()
             QString email = query.value("Email").toString();
 
             ui->tableWidget->insertRow(row);
+
             ui->tableWidget->setItem(row, 0, new QTableWidgetItem(id));
             ui->tableWidget->setItem(row, 1, new QTableWidgetItem(firstName));
             ui->tableWidget->setItem(row, 2, new QTableWidgetItem(lastName));
