@@ -10,15 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     addcustomer.cpp \
+    customerinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     addcustomer.h \
+    customerinfo.h \
     mainwindow.h
 
 FORMS += \
     addcustomer.ui \
+    customerinfo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

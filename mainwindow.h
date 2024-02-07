@@ -8,6 +8,8 @@
 #include <QFileInfo>
 
 #include "addcustomer.h"
+#include "customerinfo.h"
+#include "qtablewidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,10 +37,13 @@ private slots:
 
     void on_btnAddCustomer_clicked();
 
+    void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
+
 private:
     Ui::MainWindow *ui;
 
     AddCustomer *ptrAddCustomer;
+    CustomerInfo *ptrCustomerInfo;
     QSqlDatabase DB;
     QString path_to_db = "D:/SQLite/Customers.db";
 };

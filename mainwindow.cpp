@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     ptrAddCustomer = new AddCustomer();
+    ptrCustomerInfo = new CustomerInfo();
 
     setupTableWidget();
 
@@ -62,6 +64,7 @@ void MainWindow::setupTableWidget()
     QStringList headers;
     headers << "ID" << "Etunimi" << "Sukunimi";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
@@ -183,8 +186,8 @@ void MainWindow::on_btnSearch_clicked()
 
 /**********
  * FUNCTION
- * Add new customer
- * Opens a new window for customer adding
+ * Add new customer.
+ * Opens a new window for customer adding.
 ***********/
 
 void MainWindow::on_btnAddCustomer_clicked()
@@ -192,4 +195,24 @@ void MainWindow::on_btnAddCustomer_clicked()
     ptrAddCustomer->show();
 
 }
+
+/**********
+ * FUNCTION
+ * Double-click column to show customer
+ * spesific info on a new window.
+***********/
+
+void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
+{
+    int customerId = ui->tableWidget->item(item->row(), 0)->text().toInt();
+
+    QStringList customerInfo = ptrCustomerInfo->getCustomerInfo(customerId);
+
+    // Update CustomerInfoTab with the retrieved information
+    ptrCustomerInfo->setCustomerInfo(customerInfo);
+
+    ptrCustomerInfo->show();
+}
+
+
 

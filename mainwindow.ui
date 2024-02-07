@@ -66,9 +66,9 @@
    <widget class="QLineEdit" name="lineEditSearch">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>60</x>
       <y>60</y>
-      <width>321</width>
+      <width>331</width>
       <height>24</height>
      </rect>
     </property>
