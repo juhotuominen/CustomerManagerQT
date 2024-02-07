@@ -57,13 +57,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupTableWidget()
 {
-    ui->tableWidget->setColumnCount(9);
+    ui->tableWidget->setColumnCount(3);
 
     QStringList headers;
-    headers << "ID" << "Etunimi" << "Sukunimi" << "Hetu" << "Osoite" << "Puhelinnumero" << "Email" << "Esitiedot" << "Kommentit";
+    headers << "ID" << "Etunimi" << "Sukunimi";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 /**********
@@ -108,7 +108,7 @@ void MainWindow::on_btnRemove_clicked()
 
 void MainWindow::on_btnGet_clicked()
 {
-    QSqlQuery query("SELECT id, Firstname, Lastname, SocialSecurity, Address, Phone, Email FROM Customers");
+    QSqlQuery query("SELECT id, Firstname, Lastname FROM Customers");
 
     ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
@@ -118,21 +118,14 @@ void MainWindow::on_btnGet_clicked()
         QString id = query.value("id").toString();
         QString firstName = query.value("Firstname").toString();
         QString lastName = query.value("Lastname").toString();
-        QString socialsecurity = query.value("SocialSecurity").toString();
-        QString address = query.value("Address").toString();
-        QString phone = query.value("Phone").toString();
-        QString email = query.value("Email").toString();
 
         ui->tableWidget->insertRow(row);
 
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(id));
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(firstName));
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(lastName));
-        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(socialsecurity));
-        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(address));
-        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(phone));
-        ui->tableWidget->setItem(row, 6, new QTableWidgetItem(email));
 
+        ui->tableWidget->setColumnHidden(0, true);
         row++;
     }
 }

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
-    <height>433</height>
+    <width>545</width>
+    <height>449</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QPushButton" name="btnSave">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>390</y>
+     <x>440</x>
+     <y>410</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QPushButton" name="btnCancel">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>390</y>
+     <x>340</x>
+     <y>410</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>20</y>
+     <x>60</x>
+     <y>30</y>
      <width>49</width>
      <height>21</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
+     <x>60</x>
+     <y>60</y>
      <width>61</width>
      <height>21</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>80</y>
+     <x>60</x>
+     <y>90</y>
      <width>49</width>
      <height>21</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>140</y>
+     <x>60</x>
+     <y>150</y>
      <width>49</width>
      <height>21</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>170</y>
+     <x>60</x>
+     <y>180</y>
      <width>49</width>
      <height>21</height>
     </rect>
@@ -107,38 +107,12 @@
     <string>Email</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>220</y>
-     <width>61</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Esitiedot</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>290</y>
-     <width>61</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Kommentit</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lineEditFirstname">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>20</y>
-     <width>151</width>
+     <x>140</x>
+     <y>30</y>
+     <width>371</width>
      <height>24</height>
     </rect>
    </property>
@@ -146,9 +120,9 @@
   <widget class="QLineEdit" name="lineEditLastname">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>50</y>
-     <width>151</width>
+     <x>140</x>
+     <y>60</y>
+     <width>371</width>
      <height>24</height>
     </rect>
    </property>
@@ -156,9 +130,9 @@
   <widget class="QLineEdit" name="lineEditSocialsecurity">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>80</y>
-     <width>151</width>
+     <x>140</x>
+     <y>90</y>
+     <width>371</width>
      <height>24</height>
     </rect>
    </property>
@@ -166,9 +140,9 @@
   <widget class="QLineEdit" name="lineEditPhone">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>140</y>
-     <width>151</width>
+     <x>140</x>
+     <y>150</y>
+     <width>371</width>
      <height>24</height>
     </rect>
    </property>
@@ -176,39 +150,19 @@
   <widget class="QLineEdit" name="lineEditEmail">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>170</y>
-     <width>151</width>
+     <x>140</x>
+     <y>180</y>
+     <width>371</width>
      <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEditPreinfo">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>200</y>
-     <width>371</width>
-     <height>70</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEditComments">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>280</y>
-     <width>371</width>
-     <height>71</height>
     </rect>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditAddress">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>110</y>
-     <width>151</width>
+     <x>140</x>
+     <y>120</y>
+     <width>371</width>
      <height>24</height>
     </rect>
    </property>
@@ -216,14 +170,106 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>110</y>
+     <x>60</x>
+     <y>120</y>
      <width>49</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>Osoite</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditProfession">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>230</y>
+     <width>171</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditDiseases">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>270</y>
+     <width>171</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditMedication">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>310</y>
+     <width>171</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditHobbies">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>350</y>
+     <width>171</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>230</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ammatti</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>270</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sairaudet</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>310</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lääkkeet</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>350</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Harrastukset</string>
    </property>
   </widget>
  </widget>

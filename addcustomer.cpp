@@ -26,16 +26,18 @@ void AddCustomer::on_btnSave_clicked()
 
     // TODO: Check that empty areas are not allowed
     QSqlQuery query;
-    query.prepare("INSERT INTO Customers (FirstName, LastName, SocialSecurity, Address, Phone, Email, Preinformation, Comments) "
-                  "VALUES (:firstname, :lastname, :socialsecurity, :address, :phone, :email, :preinfo, :comments)");
+    query.prepare("INSERT INTO Customers (FirstName, LastName, SocialSecurity, Address, Phone, Email, Profession, Hobbies, Diseases, Medication) "
+                  "VALUES (:firstname, :lastname, :socialsecurity, :address, :phone, :email, :profession, :hobbies, :diseases, :medication)");
     query.bindValue(":firstname", data[0]);
     query.bindValue(":lastname", data[1]);
     query.bindValue(":socialsecurity", data[2]);
     query.bindValue(":address", data[3]);
     query.bindValue(":phone", data[4]);
     query.bindValue(":email", data[5]);
-    query.bindValue(":preinfo", data[6]);
-    query.bindValue(":comments", data[7]);
+    query.bindValue(":profession", data[6]);
+    query.bindValue(":hobbies", data[7]);
+    query.bindValue(":diseases", data[8]);
+    query.bindValue(":medication", data[9]);
 
 
     if (!query.exec()) {
@@ -58,8 +60,10 @@ QStringList AddCustomer::getData()
          << ui->lineEditAddress->text()
          << ui->lineEditPhone->text()
          << ui->lineEditEmail->text()
-         << ui->textEditPreinfo->toPlainText()
-         << ui->textEditComments->toPlainText();
+         << ui->lineEditProfession->text()
+         << ui->lineEditHobbies->text()
+         << ui->lineEditDiseases->text()
+         << ui->lineEditMedication->text();
 
     return data;
 }
