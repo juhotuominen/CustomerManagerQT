@@ -7,6 +7,8 @@
 #include <QtDebug>
 #include <QFileInfo>
 
+#include "addcustomer.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -22,13 +24,8 @@ public:
     ~MainWindow();
 
 private slots:
-    //void ReadFile();
-
-    //void UpdateFile();
 
     void setupTableWidget();
-
-    void on_btnAdd_clicked();
 
     void on_btnRemove_clicked();
 
@@ -36,12 +33,13 @@ private slots:
 
     void on_btnSearch_clicked();
 
+    void on_btnAddCustomer_clicked();
+
 private:
     Ui::MainWindow *ui;
 
+    AddCustomer *ptrAddCustomer;
     QSqlDatabase DB;
-    QStringList getData() const;
-    QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "\\customers.txt";
     QString path_to_db = "D:/SQLite/Customers.db";
 };
 #endif // MAINWINDOW_H

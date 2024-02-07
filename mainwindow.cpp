@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+    ptrAddCustomer = new AddCustomer();
+
     setupTableWidget();
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
@@ -38,89 +40,36 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete ptrAddCustomer;
     delete ui;
+
     if (DB.isOpen())
     {
         DB.close();
     }
 }
 
-
 /**********
  * FUNCTION
  * Setup table at the start of program
+ * Number of columns, Headers for each column and column width
 **************/
 
 void MainWindow::setupTableWidget()
 {
-    // Number of columns
     ui->tableWidget->setColumnCount(9);
 
-    // Header labels for each column
     QStringList headers;
     headers << "ID" << "Etunimi" << "Sukunimi" << "Hetu" << "Osoite" << "Puhelinnumero" << "Email" << "Esitiedot" << "Kommentit";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
-    // Adjust column widths if needed
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
-
-
-/**********
- * FUNCTION
- * Get data from lineEdits to be added for new customer
-***********/
-
-QStringList MainWindow::getData() const
-{
-    // TODO: Unique ID and check for empty areas
-    QStringList data;
-    data << ui->lineEditFirstname->text()
-         << ui->lineEditLastname->text()
-         << ui->lineEditSocialsecurity->text()
-         << ui->lineEditAddress->text()
-         << ui->lineEditPhone->text()
-         << ui->lineEditEmail->text();
-
-    return data;
-}
-
-
-/**********
- * FUNCTION
- * Add new customer to database and table view
-***********/
-
-void MainWindow::on_btnAdd_clicked()
-{
-
-    QStringList data = getData();
-
-    // Insert the data into the SQLite database
-    // TODO: Check that empty areas are not allowed
-    QSqlQuery query;
-    query.prepare("INSERT INTO Customers (FirstName, LastName, SocialSecurity, Address, Phone, Email) "
-                  "VALUES (:firstname, :lastname, :socialsecurity, :address, :phone, :email)");
-    query.bindValue(":firstname", data[0]);
-    query.bindValue(":lastname", data[1]);
-    query.bindValue(":socialsecurity", data[2]);
-    query.bindValue(":address", data[3]);
-    query.bindValue(":phone", data[4]);
-    query.bindValue(":email", data[5]);
-
-    if (!query.exec()) {
-        QMessageBox::critical(this, "Database Error", query.lastError().text());
-        return; // If there's an error, exit the function
-    }
-
-    // Refresh the tableWidget by re-reading data
-    on_btnGet_clicked();
-}
-
 
 /**********
  * FUNCTION
  * Remove customer from database and table view
+ * First remove from database, if succes remove from view and infrom user
 ***********/
 
 void MainWindow::on_btnRemove_clicked()
@@ -136,7 +85,6 @@ void MainWindow::on_btnRemove_clicked()
 
         if (query.exec())
         {
-            // Remove the row from the tableWidget
             ui->tableWidget->removeRow(currentRow);
             QMessageBox::information(this, "Remove Row", "Row removed from table and database.");
         }
@@ -155,19 +103,18 @@ void MainWindow::on_btnRemove_clicked()
 /**********
  * FUNCTION
  * Get informations from database (used as refresh)
+ * Clear existing data on tablewidget and then get data from database
 ***********/
 
 void MainWindow::on_btnGet_clicked()
 {
     QSqlQuery query("SELECT id, Firstname, Lastname, SocialSecurity, Address, Phone, Email FROM Customers");
 
-    // Clear existing data in the tableWidget
     ui->tableWidget->clearContents();
     ui->tableWidget->setRowCount(0);
 
     int row = 0;
     while (query.next()) {
-        // Access data using column names or indices
         QString id = query.value("id").toString();
         QString firstName = query.value("Firstname").toString();
         QString lastName = query.value("Lastname").toString();
@@ -176,10 +123,8 @@ void MainWindow::on_btnGet_clicked()
         QString phone = query.value("Phone").toString();
         QString email = query.value("Email").toString();
 
-        // Add a new row to the tableWidget
         ui->tableWidget->insertRow(row);
 
-        // Populate cells in the current row
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(id));
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(firstName));
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(lastName));
@@ -196,7 +141,9 @@ void MainWindow::on_btnGet_clicked()
 /**********
  * FUNCTION
  * Get informations from database with spesific customer,
- * search with letter or fullname/socialsecurity
+ * search with letter or fullname/socialsecurity.
+ * First clear existing data on tableview and then get data
+ * from database with matching searchparameter.
 ***********/
 
 void MainWindow::on_btnSearch_clicked()
@@ -208,11 +155,9 @@ void MainWindow::on_btnSearch_clicked()
 
     if (query.exec())
     {
-        // Clear existing data in the tableWidget
         ui->tableWidget->clearContents();
         ui->tableWidget->setRowCount(0);
 
-        // Assuming your tableWidget has columns FirstName, LastName, etc.
         int row = 0;
         while (query.next())
         {
@@ -241,5 +186,17 @@ void MainWindow::on_btnSearch_clicked()
     {
         qDebug() << "Error executing query:" << query.lastError().text();
     }
+}
+
+/**********
+ * FUNCTION
+ * Add new customer
+ * Opens a new window for customer adding
+***********/
+
+void MainWindow::on_btnAddCustomer_clicked()
+{
+    ptrAddCustomer->show();
+
 }
 
