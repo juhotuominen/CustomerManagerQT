@@ -24,19 +24,20 @@ public:
 private slots:
     void onLineEditTextChanged(const QString &text);
 
-    void setCustomerId(int id);
-
-
     void on_cancelButton_clicked();
 
     void on_saveButton_clicked();
 
     void on_addVisitButton_clicked();
 
+    void on_refreshButton_clicked();
+
 private:
     Ui::CustomerInfo *ui;
     AddVisit *ptrAddVisit;
+    void setCustomerId(int id);
     int publicId;
+    void handleAddVisitClosed(int result);
 
 };
 

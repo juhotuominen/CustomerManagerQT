@@ -31,6 +31,7 @@ CustomerInfo::CustomerInfo(QWidget *parent)
     }
 
     ui->saveButton->setEnabled(false);
+    ui->removeVisitButton->setEnabled(false);
 }
 
 CustomerInfo::~CustomerInfo()
@@ -53,7 +54,6 @@ int CustomerInfo::getCustomerId()
 {
     return publicId;
 }
-
 
 
 /**********
@@ -106,8 +106,6 @@ void CustomerInfo::getCustomerVisitInfo(int customerId)
     QStringList visitData;
 
     if (query.exec()) {
-        qDebug() << "Query executed successfully";
-
         while (query.next()) {
             // Iterate through all rows for the specified customer
             visitData << query.value("date").toString()
@@ -123,7 +121,6 @@ void CustomerInfo::getCustomerVisitInfo(int customerId)
         qDebug() << "Error executing query:" << query.lastError().text();
     }
 
-    qDebug() << visitData;
     setCustomerVisitInfo(visitData);
 }
 
@@ -174,17 +171,16 @@ void CustomerInfo::setCustomerVisitInfo(QStringList customerVisitInfo)
     {
         if (i % 4 == 0) // Make the first row (date row) bold
         {
-            formattedText += "<b>" + customerVisitInfo[i] + "</b><br>";
+            formattedText += "<br><b>" + customerVisitInfo[i] + "</b><br>";
         }
         else
         {
-            formattedText += customerVisitInfo[i] + "<br>";
+            formattedText += customerVisitInfo[i] + "<br><br>";
         }
     }
 
     ui->textBrowser->setHtml(formattedText);
 }
-
 
 
 /**********
@@ -253,5 +249,11 @@ void CustomerInfo::on_addVisitButton_clicked()
     ptrAddVisit->setCustomerId(getCustomerId());
 
     ptrAddVisit->show();
+}
+
+
+void CustomerInfo::on_refreshButton_clicked()
+{
+    getCustomerVisitInfo(getCustomerId());
 }
 

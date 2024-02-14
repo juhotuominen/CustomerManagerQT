@@ -4,13 +4,11 @@
 #include <QStandardPaths>
 #include <QMessageBox>
 #include <QTableWidget>
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     ptrAddCustomer = new AddCustomer();
     ptrCustomerInfo = new CustomerInfo();
@@ -20,20 +18,18 @@ MainWindow::MainWindow(QWidget *parent)
     DB = QSqlDatabase::addDatabase("QSQLITE");
     DB.setDatabaseName(path_to_db);
     QFileInfo checkFile(path_to_db);
+    QSqlQuery query(DB);
 
-    if(checkFile.isFile())
-    {
-        if(DB.open())
-        {
+    if (checkFile.isFile()) {
+        if (DB.open()) {
             ui->labelStatus->setText("Connected...");
-        }
-        else
-        {
+
+            // Enable foreign key support after opening the database
+            query.exec("PRAGMA foreign_keys = ON;");
+        } else {
             ui->labelStatus->setText("Error: " + DB.lastError().text());
         }
-    }
-    else
-    {
+    } else {
         ui->labelStatus->setText("Failed to open the database!");
     }
 
@@ -168,7 +164,6 @@ void MainWindow::on_btnSearch_clicked()
             ui->tableWidget->setItem(row, 1, new QTableWidgetItem(firstName));
             ui->tableWidget->setItem(row, 2, new QTableWidgetItem(lastName));
 
-
             row++;
         }
     }
@@ -187,6 +182,7 @@ void MainWindow::on_btnSearch_clicked()
 void MainWindow::on_btnAddCustomer_clicked()
 {
     ptrAddCustomer->show();
+    on_btnGet_clicked();
 }
 
 /**********
