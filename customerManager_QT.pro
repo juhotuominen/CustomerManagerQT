@@ -10,17 +10,20 @@ CONFIG += c++17
 
 SOURCES += \
     addcustomer.cpp \
+    addvisit.cpp \
     customerinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     addcustomer.h \
+    addvisit.h \
     customerinfo.h \
     mainwindow.h
 
 FORMS += \
     addcustomer.ui \
+    addvisit.ui \
     customerinfo.ui \
     mainwindow.ui
 

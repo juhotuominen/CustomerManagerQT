@@ -8,6 +8,7 @@ CustomerInfo::CustomerInfo(QWidget *parent)
     , ui(new Ui::CustomerInfo)
 {
     ui->setupUi(this);
+    ptrAddVisit = new AddVisit();
 
     const QStringList lineEditObjectNames = {
         "lineEditFirstname",
@@ -34,7 +35,23 @@ CustomerInfo::CustomerInfo(QWidget *parent)
 
 CustomerInfo::~CustomerInfo()
 {
+    delete ptrAddVisit;
     delete ui;
+}
+
+
+/**********
+ * FUNCTION
+ * Getter and Setter for customerID
+***********/
+
+void CustomerInfo::setCustomerId(int id)
+{
+    publicId = id;
+}
+int CustomerInfo::getCustomerId()
+{
+    return publicId;
 }
 
 
@@ -46,7 +63,7 @@ CustomerInfo::~CustomerInfo()
 
 QStringList CustomerInfo::getCustomerInfo(int customerId)
 {
-    publicId = customerId;
+    setCustomerId(customerId);
 
     QSqlQuery query;
     query.prepare("SELECT Firstname, Lastname, SocialSecurity, Address, Phone, Email, Profession, Hobbies, Diseases, Medication FROM Customers WHERE id = :customerid");
@@ -224,5 +241,17 @@ void CustomerInfo::on_saveButton_clicked()
 
     ui->saveButton->setEnabled(false);
     this->close();
+}
+
+/**********
+ * FUNCTION
+ * set customerId and open AddVisit page
+***********/
+
+void CustomerInfo::on_addVisitButton_clicked()
+{
+    ptrAddVisit->setCustomerId(getCustomerId());
+
+    ptrAddVisit->show();
 }
 

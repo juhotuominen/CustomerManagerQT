@@ -1,6 +1,7 @@
 #ifndef CUSTOMERINFO_H
 #define CUSTOMERINFO_H
 
+#include "addvisit.h"
 #include <QDialog>
 
 namespace Ui {
@@ -18,18 +19,24 @@ public:
     void setCustomerVisitInfo(QStringList customerVisitInfo);
     QStringList getCustomerInfo(int customerId);
     void getCustomerVisitInfo(int customerId);
-    int publicId = 0;
+    int getCustomerId();
 
 private slots:
     void onLineEditTextChanged(const QString &text);
+
+    void setCustomerId(int id);
 
 
     void on_cancelButton_clicked();
 
     void on_saveButton_clicked();
 
+    void on_addVisitButton_clicked();
+
 private:
     Ui::CustomerInfo *ui;
+    AddVisit *ptrAddVisit;
+    int publicId;
 
 };
 

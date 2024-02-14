@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete ptrCustomerInfo;
     delete ptrAddCustomer;
     delete ui;
 
@@ -65,8 +66,6 @@ void MainWindow::setupTableWidget()
     headers << "ID" << "Etunimi" << "Sukunimi";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 /**********
@@ -188,7 +187,6 @@ void MainWindow::on_btnSearch_clicked()
 void MainWindow::on_btnAddCustomer_clicked()
 {
     ptrAddCustomer->show();
-
 }
 
 /**********
