@@ -17,14 +17,13 @@ AddCustomer::~AddCustomer()
  * FUNCTION
  * Add new customer to database and table view
  * First insert data into database
- * TODO: Close window after saving and refresh tableview on mainwindow
+ * TODO: refresh tableview on mainwindow after closing
 ***********/
 
 void AddCustomer::on_btnSave_clicked()
 {
     QStringList data = getData();
 
-    // TODO: Check that empty areas are not allowed
     QSqlQuery query;
     query.prepare("INSERT INTO Customers (FirstName, LastName, SocialSecurity, Address, Phone, Email, Profession, Hobbies, Diseases, Medication) "
                   "VALUES (:firstname, :lastname, :socialsecurity, :address, :phone, :email, :profession, :hobbies, :diseases, :medication)");
@@ -44,6 +43,7 @@ void AddCustomer::on_btnSave_clicked()
         QMessageBox::critical(this, "Database Error", query.lastError().text());
         return;
     }
+    this->close();
 }
 
 /**********
@@ -66,5 +66,15 @@ QStringList AddCustomer::getData()
          << ui->lineEditMedication->text();
 
     return data;
+}
+
+/**********
+ * FUNCTION
+ * Close window without saving
+***********/
+
+void AddCustomer::on_btnCancel_clicked()
+{
+    this->close();
 }
 

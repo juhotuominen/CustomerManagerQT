@@ -6,6 +6,28 @@ CustomerInfo::CustomerInfo(QWidget *parent)
     , ui(new Ui::CustomerInfo)
 {
     ui->setupUi(this);
+
+    const QStringList lineEditObjectNames = {
+        "lineEditFirstname",
+        "lineEditLastname",
+        "lineEditSocialsecurity",
+        "lineEditAddress",
+        "lineEditPhone",
+        "lineEditEmail",
+        "lineEditProfession",
+        "lineEditHobbies",
+        "lineEditDiseases",
+        "lineEditMedication"
+    };
+
+    for (const QString& objectName : lineEditObjectNames) {
+        QLineEdit* lineEdit = findChild<QLineEdit*>(objectName);
+        if (lineEdit) {
+            connect(lineEdit, &QLineEdit::textEdited, this, &CustomerInfo::onLineEditTextChanged);
+        }
+    }
+
+    ui->saveButton->setEnabled(false);
 }
 
 CustomerInfo::~CustomerInfo()
@@ -13,9 +35,15 @@ CustomerInfo::~CustomerInfo()
     delete ui;
 }
 
+/**********
+ * FUNCTION
+ * Get customer info from database and set publicID
+***********/
 
 QStringList CustomerInfo::getCustomerInfo(int customerId)
 {
+    publicId = customerId;
+
     QSqlQuery query;
     query.prepare("SELECT Firstname, Lastname, SocialSecurity, Address, Phone, Email, Profession, Hobbies, Diseases, Medication FROM Customers WHERE id = :customerid");
     query.bindValue(":customerid", customerId);
@@ -41,6 +69,10 @@ QStringList CustomerInfo::getCustomerInfo(int customerId)
     return data;
 }
 
+/**********
+ * FUNCTION
+ * Set info from databse to page
+***********/
 
 void CustomerInfo::setCustomerInfo(QStringList customerInfo)
 {
@@ -58,14 +90,66 @@ void CustomerInfo::setCustomerInfo(QStringList customerInfo)
     QString medication = customerInfo[9];
 
 
-    ui->label->setText(firstName);
-    ui->label_2->setText(lastName);
-    ui->label_3->setText(socialsecurity);
-    ui->label_4->setText(address);
-    ui->label_5->setText(phone);
-    ui->label_6->setText(email);
-    ui->label_7->setText(profession);
-    ui->label_8->setText(hobbies);
-    ui->label_9->setText(diseases);
-    ui->label_10->setText(medication);
+    ui->lineEditFirstname->setText(firstName);
+    ui->lineEditLastname->setText(lastName);
+    ui->lineEditSocialsecurity->setText(socialsecurity);
+    ui->lineEditAddress->setText(address);
+    ui->lineEditPhone->setText(phone);
+    ui->lineEditEmail->setText(email);
+    ui->lineEditProfession->setText(profession);
+    ui->lineEditHobbies->setText(hobbies);
+    ui->lineEditDiseases->setText(diseases);
+    ui->lineEditMedication->setText(medication);
 }
+
+void CustomerInfo::onLineEditTextChanged(const QString &text)
+{
+    Q_UNUSED(text); // Unused parameter to avoid compiler warnings
+    ui->saveButton->setEnabled(true);
+}
+
+
+/**********
+ * FUNCTION
+ * Close window without saving
+***********/
+
+void CustomerInfo::on_cancelButton_clicked()
+{
+    ui->saveButton->setEnabled(false);
+    this->close();
+}
+
+/**********
+ * FUNCTION
+ * Save modified customer infos
+***********/
+
+void CustomerInfo::on_saveButton_clicked()
+{
+
+    QSqlQuery query;
+    query.prepare("UPDATE Customers SET Firstname = :firstname, Lastname = :lastname, SocialSecurity = :socialsecurity, Address = :address, Phone = :phone, Email = :email, Profession = :profession, Hobbies = :hobbies, Diseases = :diseases, Medication = :medication WHERE id = :customerid");
+
+    query.bindValue(":customerid", publicId);
+    query.bindValue(":firstname", ui->lineEditFirstname->text());
+    query.bindValue(":lastname", ui->lineEditLastname->text());
+    query.bindValue(":socialsecurity", ui->lineEditSocialsecurity->text());
+    query.bindValue(":address", ui->lineEditAddress->text());
+    query.bindValue(":phone", ui->lineEditPhone->text());
+    query.bindValue(":email", ui->lineEditEmail->text());
+    query.bindValue(":profession", ui->lineEditProfession->text());
+    query.bindValue(":hobbies", ui->lineEditHobbies->text());
+    query.bindValue(":diseases", ui->lineEditDiseases->text());
+    query.bindValue(":medication", ui->lineEditMedication->text());
+
+    if (query.exec()) {
+        qDebug() << "Row updated successfully!";
+    } else {
+        qDebug() << "Error updating row:" << query.lastError().text();
+    }
+
+    ui->saveButton->setEnabled(false);
+    this->close();
+}
+

@@ -20,6 +20,8 @@ public:
 private slots:
     void on_btnSave_clicked();
 
+    void on_btnCancel_clicked();
+
 private:
     Ui::AddCustomer *ui;
     QStringList getData();

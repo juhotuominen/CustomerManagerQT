@@ -18,6 +18,15 @@ public:
     ~CustomerInfo();
     void setCustomerInfo(QStringList customerInfo);
     QStringList getCustomerInfo(int customerId);
+    int publicId = 0;
+
+private slots:
+    void onLineEditTextChanged(const QString &text);
+
+
+    void on_cancelButton_clicked();
+
+    void on_saveButton_clicked();
 
 private:
     Ui::CustomerInfo *ui;

@@ -78,10 +78,11 @@ void MainWindow::setupTableWidget()
 void MainWindow::on_btnRemove_clicked()
 {
     int currentRow = ui->tableWidget->currentRow();
-    QString id = ui->tableWidget->item(currentRow, 0)->text();
 
     if (currentRow >= 0)
     {
+        QString id = ui->tableWidget->item(currentRow, 0)->text();
+
         QSqlQuery query;
         query.prepare("DELETE FROM Customers WHERE ID = :id");
         query.bindValue(":id", id);
