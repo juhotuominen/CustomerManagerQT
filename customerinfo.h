@@ -2,8 +2,6 @@
 #define CUSTOMERINFO_H
 
 #include <QDialog>
-#include "qsqlerror.h"
-#include "qsqlquery.h"
 
 namespace Ui {
 class CustomerInfo;
@@ -17,7 +15,9 @@ public:
     explicit CustomerInfo(QWidget *parent = nullptr);
     ~CustomerInfo();
     void setCustomerInfo(QStringList customerInfo);
+    void setCustomerVisitInfo(QStringList customerVisitInfo);
     QStringList getCustomerInfo(int customerId);
+    void getCustomerVisitInfo(int customerId);
     int publicId = 0;
 
 private slots:

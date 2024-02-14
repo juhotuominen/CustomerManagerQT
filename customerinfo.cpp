@@ -1,4 +1,6 @@
 #include "customerinfo.h"
+#include "qsqlerror.h"
+#include "qsqlquery.h"
 #include "ui_customerinfo.h"
 
 CustomerInfo::CustomerInfo(QWidget *parent)
@@ -35,6 +37,8 @@ CustomerInfo::~CustomerInfo()
     delete ui;
 }
 
+
+
 /**********
  * FUNCTION
  * Get customer info from database and set publicID
@@ -66,18 +70,55 @@ QStringList CustomerInfo::getCustomerInfo(int customerId)
         qDebug() << "Error retrieving customer information:" << query.lastError().text();
     }
 
+    getCustomerVisitInfo(customerId);
     return data;
 }
 
+
 /**********
  * FUNCTION
- * Set info from databse to page
+ * Get visit info from database
+***********/
+
+void CustomerInfo::getCustomerVisitInfo(int customerId)
+{
+    QSqlQuery query;
+    query.prepare("SELECT reason, operation, plan, date FROM Information WHERE customer_id = :customerid");
+    query.bindValue(":customerid", customerId);
+
+    QStringList visitData;
+
+    if (query.exec()) {
+        qDebug() << "Query executed successfully";
+
+        while (query.next()) {
+            // Iterate through all rows for the specified customer
+            visitData << query.value("date").toString()
+                      << query.value("reason").toString()
+                      << query.value("operation").toString()
+                      << query.value("plan").toString();
+        }
+
+        if (visitData.isEmpty()) {
+            qDebug() << "No data found for customer_id:" << customerId;
+        }
+    } else {
+        qDebug() << "Error executing query:" << query.lastError().text();
+    }
+
+    qDebug() << visitData;
+    setCustomerVisitInfo(visitData);
+}
+
+
+/**********
+ * FUNCTION
+ * Set info from database to info tab
 ***********/
 
 void CustomerInfo::setCustomerInfo(QStringList customerInfo)
 {
 
-    // Assuming customerInfo contains data for one customer
     QString firstName = customerInfo[0];
     QString lastName = customerInfo[1];
     QString socialsecurity = customerInfo[2];
@@ -101,6 +142,38 @@ void CustomerInfo::setCustomerInfo(QStringList customerInfo)
     ui->lineEditDiseases->setText(diseases);
     ui->lineEditMedication->setText(medication);
 }
+
+
+/**********
+ * FUNCTION
+ * Set info from database to visits tab
+***********/
+
+void CustomerInfo::setCustomerVisitInfo(QStringList customerVisitInfo)
+{
+    QString formattedText;
+
+    for (int i = 0; i < customerVisitInfo.size(); ++i)
+    {
+        if (i % 4 == 0) // Make the first row (date row) bold
+        {
+            formattedText += "<b>" + customerVisitInfo[i] + "</b><br>";
+        }
+        else
+        {
+            formattedText += customerVisitInfo[i] + "<br>";
+        }
+    }
+
+    ui->textBrowser->setHtml(formattedText);
+}
+
+
+
+/**********
+ * FUNCTION
+ * Make save button visible if text is edited
+***********/
 
 void CustomerInfo::onLineEditTextChanged(const QString &text)
 {

@@ -147,7 +147,7 @@ void MainWindow::on_btnSearch_clicked()
 {
     QSqlQuery query;
     QString searchParam = ui->lineEditSearch -> text();
-    query.prepare("SELECT * FROM Customers WHERE Firstname LIKE :parameter OR SocialSecurity LIKE :parameter");
+    query.prepare("SELECT id, Firstname, Lastname FROM Customers WHERE Firstname LIKE :parameter OR SocialSecurity LIKE :parameter");
     query.bindValue(":parameter", searchParam + "%");
 
     if (query.exec())
@@ -161,20 +161,14 @@ void MainWindow::on_btnSearch_clicked()
             QString id = query.value("id").toString();
             QString firstName = query.value("Firstname").toString();
             QString lastName = query.value("Lastname").toString();
-            QString socialsecurity = query.value("SocialSecurity").toString();
-            QString address = query.value("Address").toString();
-            QString phone = query.value("Phone").toString();
-            QString email = query.value("Email").toString();
+
 
             ui->tableWidget->insertRow(row);
 
             ui->tableWidget->setItem(row, 0, new QTableWidgetItem(id));
             ui->tableWidget->setItem(row, 1, new QTableWidgetItem(firstName));
             ui->tableWidget->setItem(row, 2, new QTableWidgetItem(lastName));
-            ui->tableWidget->setItem(row, 3, new QTableWidgetItem(socialsecurity));
-            ui->tableWidget->setItem(row, 4, new QTableWidgetItem(address));
-            ui->tableWidget->setItem(row, 5, new QTableWidgetItem(phone));
-            ui->tableWidget->setItem(row, 6, new QTableWidgetItem(email));
+
 
             row++;
         }
@@ -216,4 +210,13 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 }
 
 
+/**********
+ * FUNCTION
+ * Pressing enter is same as clicking search
+***********/
+
+void MainWindow::on_lineEditSearch_editingFinished()
+{
+    on_btnSearch_clicked();
+}
 

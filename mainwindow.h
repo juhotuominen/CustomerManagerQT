@@ -39,6 +39,8 @@ private slots:
 
     void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
+    void on_lineEditSearch_editingFinished();
+
 private:
     Ui::MainWindow *ui;
 
