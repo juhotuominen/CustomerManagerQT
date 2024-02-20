@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AddCustomer</string>
+   <string>Lisää asiakas</string>
   </property>
   <widget class="QPushButton" name="btnSave">
    <property name="geometry">
