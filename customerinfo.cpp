@@ -31,7 +31,6 @@ CustomerInfo::CustomerInfo(QWidget *parent)
     }
 
     ui->saveButton->setEnabled(false);
-    ui->removeVisitButton->setEnabled(false);
 
     connect(ptrAddVisit, &AddVisit::visitAdded, this, &CustomerInfo::onVisitAdded);
 }

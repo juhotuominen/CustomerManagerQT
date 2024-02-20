@@ -49,7 +49,7 @@ private:
     AddCustomer *ptrAddCustomer;
     CustomerInfo *ptrCustomerInfo;
     QSqlDatabase DB;
-    //RELEASE QString path_to_db = "./database/CustomersDeploy.db";
-    QString path_to_db = "D:/SQLite/Customers.db";
+    QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
+    //QString path_to_db = "D:/SQLite/Customers.db"; //DEV
 };
 #endif // MAINWINDOW_H
