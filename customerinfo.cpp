@@ -32,6 +32,8 @@ CustomerInfo::CustomerInfo(QWidget *parent)
 
     ui->saveButton->setEnabled(false);
     ui->removeVisitButton->setEnabled(false);
+
+    connect(ptrAddVisit, &AddVisit::visitAdded, this, &CustomerInfo::onVisitAdded);
 }
 
 CustomerInfo::~CustomerInfo()
@@ -255,15 +257,23 @@ void CustomerInfo::on_addVisitButton_clicked()
     ptrAddVisit->show();
 }
 
+/**********
+ * FUNCTION
+ * Refresh customers
+***********/
 
 void CustomerInfo::on_refreshButton_clicked()
 {
     getCustomerVisitInfo(getCustomerId());
 }
 
+/**********
+ * FUNCTION
+ * Auto update when new visit is added
+***********/
 
-void CustomerInfo::on_removeVisitButton_clicked()
+void CustomerInfo::onVisitAdded()
 {
-
+    getCustomerVisitInfo(getCustomerId());
 }
 

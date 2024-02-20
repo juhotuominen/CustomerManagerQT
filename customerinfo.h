@@ -32,7 +32,7 @@ private slots:
 
     void on_refreshButton_clicked();
 
-    void on_removeVisitButton_clicked();
+    void onVisitAdded();
 
 private:
     Ui::CustomerInfo *ui;

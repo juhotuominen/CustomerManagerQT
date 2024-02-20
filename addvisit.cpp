@@ -49,6 +49,8 @@ void AddVisit::on_saveBtn_clicked()
         return;
     }
 
+    emit visitAdded();
+
     // Clear inputs and close
     ui->lineEditDate->clear();
     ui->plainTextEditReason->clear();

@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->labelStatus->setText("Failed to open the database!");
     }
 
+    connect(ptrAddCustomer, &AddCustomer::customerAdded, this, &MainWindow::onCustomerAdded);
     on_btnGet_clicked();
 }
 
@@ -62,7 +63,7 @@ void MainWindow::setupTableWidget()
     ui->tableWidget->setColumnCount(3);
 
     QStringList headers;
-    headers << "ID" << "Asiakas" << "";
+    headers << "ID" << "Etunimi" << "Sukunimi";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -90,7 +91,7 @@ void MainWindow::on_btnRemove_clicked()
         if (query.exec())
         {
             ui->tableWidget->removeRow(currentRow);
-            QMessageBox::information(this, "Remove Row", "Row removed from table and database.");
+            QMessageBox::information(this, "Remove Row", "Asiakas poistettu");
         }
         else
         {
@@ -99,7 +100,7 @@ void MainWindow::on_btnRemove_clicked()
     }
     else
     {
-        QMessageBox::information(this, "Remove Row", "No row selected to remove.");
+        QMessageBox::information(this, "Remove Row", "Poistettavaa asiakasta ei valittu");
     }
 }
 
@@ -217,5 +218,10 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 void MainWindow::on_lineEditSearch_editingFinished()
 {
     on_btnSearch_clicked();
+}
+
+void MainWindow::onCustomerAdded()
+{
+    on_btnGet_clicked();
 }
 

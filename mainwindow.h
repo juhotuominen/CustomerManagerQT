@@ -41,6 +41,8 @@ private slots:
 
     void on_lineEditSearch_editingFinished();
 
+    void onCustomerAdded();
+
 private:
     Ui::MainWindow *ui;
 

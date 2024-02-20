@@ -44,6 +44,8 @@ void AddCustomer::on_btnSave_clicked()
         return;
     }
 
+    emit customerAdded();
+
     ui->lineEditAddress->clear();
     ui->lineEditDiseases->clear();
     ui->lineEditEmail->clear();

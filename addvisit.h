@@ -14,6 +14,9 @@ class AddVisit : public QDialog
 {
     Q_OBJECT
 
+signals:
+    void visitAdded();
+
 public:
     explicit AddVisit(QWidget *parent = nullptr);
     ~AddVisit();

@@ -13,6 +13,9 @@ class AddCustomer : public QDialog
 {
     Q_OBJECT
 
+signals:
+    void customerAdded();
+
 public:
     explicit AddCustomer(QWidget *parent = nullptr);
     ~AddCustomer();
