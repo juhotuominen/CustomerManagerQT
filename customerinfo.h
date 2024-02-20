@@ -32,6 +32,8 @@ private slots:
 
     void on_refreshButton_clicked();
 
+    void on_removeVisitButton_clicked();
+
 private:
     Ui::CustomerInfo *ui;
     AddVisit *ptrAddVisit;

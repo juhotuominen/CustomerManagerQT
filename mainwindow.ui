@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
+    <width>398</width>
     <height>567</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Remove</string>
+     <string>Poista</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnGet">
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Refresh</string>
+     <string>Päivitä</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelStatus">
@@ -58,9 +58,12 @@
      <rect>
       <x>60</x>
       <y>120</y>
-      <width>331</width>
+      <width>281</width>
       <height>311</height>
      </rect>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditSearch">
@@ -68,7 +71,7 @@
      <rect>
       <x>60</x>
       <y>60</y>
-      <width>331</width>
+      <width>231</width>
       <height>24</height>
      </rect>
     </property>
@@ -76,27 +79,27 @@
    <widget class="QPushButton" name="btnSearch">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>300</x>
       <y>60</y>
       <width>80</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Search</string>
+     <string>Etsi</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnAddCustomer">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>270</x>
       <y>440</y>
       <width>101</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>AddCustomer</string>
+     <string>Lisää asiakas</string>
     </property>
    </widget>
   </widget>

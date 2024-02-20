@@ -100,7 +100,7 @@ QStringList CustomerInfo::getCustomerInfo(int customerId)
 void CustomerInfo::getCustomerVisitInfo(int customerId)
 {
     QSqlQuery query;
-    query.prepare("SELECT reason, operation, plan, date FROM Information WHERE customer_id = :customerid");
+    query.prepare("SELECT reason, operation, plan, date FROM Information WHERE customer_id = :customerid ORDER BY STRFTIME('%Y-%m-%d', date) DESC");
     query.bindValue(":customerid", customerId);
 
     QStringList visitData;
@@ -171,7 +171,11 @@ void CustomerInfo::setCustomerVisitInfo(QStringList customerVisitInfo)
     {
         if (i % 4 == 0) // Make the first row (date row) bold
         {
-            formattedText += "<br><b>" + customerVisitInfo[i] + "</b><br>";
+            QString dateString = customerVisitInfo[i];
+            QDate isoDate = QDate::fromString(dateString, "yyyy-MM-dd");
+            QString displayDate = isoDate.toString("dd.MM.yyyy");
+
+            formattedText += "<br><b>" + displayDate + "</b><br>";
         }
         else
         {
@@ -255,5 +259,11 @@ void CustomerInfo::on_addVisitButton_clicked()
 void CustomerInfo::on_refreshButton_clicked()
 {
     getCustomerVisitInfo(getCustomerId());
+}
+
+
+void CustomerInfo::on_removeVisitButton_clicked()
+{
+
 }
 

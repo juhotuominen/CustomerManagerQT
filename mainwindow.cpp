@@ -4,11 +4,14 @@
 #include <QStandardPaths>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <QStyleFactory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    qApp->setStyle(QStyleFactory::create("Fusion"));
+
     ui->setupUi(this);
     ptrAddCustomer = new AddCustomer();
     ptrCustomerInfo = new CustomerInfo();
@@ -59,10 +62,12 @@ void MainWindow::setupTableWidget()
     ui->tableWidget->setColumnCount(3);
 
     QStringList headers;
-    headers << "ID" << "Etunimi" << "Sukunimi";
+    headers << "ID" << "Asiakas" << "";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
+
 
 /**********
  * FUNCTION
@@ -142,7 +147,7 @@ void MainWindow::on_btnSearch_clicked()
 {
     QSqlQuery query;
     QString searchParam = ui->lineEditSearch -> text();
-    query.prepare("SELECT id, Firstname, Lastname FROM Customers WHERE Firstname LIKE :parameter OR SocialSecurity LIKE :parameter");
+    query.prepare("SELECT id, Firstname, Lastname FROM Customers WHERE Firstname LIKE :parameter OR Lastname LIKE :parameter OR SocialSecurity LIKE :parameter");
     query.bindValue(":parameter", searchParam + "%");
 
     if (query.exec())

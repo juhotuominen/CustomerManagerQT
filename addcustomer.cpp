@@ -43,6 +43,18 @@ void AddCustomer::on_btnSave_clicked()
         QMessageBox::critical(this, "Database Error", query.lastError().text());
         return;
     }
+
+    ui->lineEditAddress->clear();
+    ui->lineEditDiseases->clear();
+    ui->lineEditEmail->clear();
+    ui->lineEditFirstname->clear();
+    ui->lineEditLastname->clear();
+    ui->lineEditHobbies->clear();
+    ui->lineEditMedication->clear();
+    ui->lineEditPhone->clear();
+    ui->lineEditProfession->clear();
+    ui->lineEditSocialsecurity->clear();
+
     this->close();
 }
 
@@ -70,11 +82,22 @@ QStringList AddCustomer::getData()
 
 /**********
  * FUNCTION
- * Close window without saving
+ * Close window without saving and clear data
 ***********/
 
 void AddCustomer::on_btnCancel_clicked()
 {
+    ui->lineEditAddress->clear();
+    ui->lineEditDiseases->clear();
+    ui->lineEditEmail->clear();
+    ui->lineEditFirstname->clear();
+    ui->lineEditLastname->clear();
+    ui->lineEditHobbies->clear();
+    ui->lineEditMedication->clear();
+    ui->lineEditPhone->clear();
+    ui->lineEditProfession->clear();
+    ui->lineEditSocialsecurity->clear();
+
     this->close();
 }
 

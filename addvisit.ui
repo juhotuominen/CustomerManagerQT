@@ -131,6 +131,19 @@
     <string>Jatkosuunnnitelma</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>(pp.kk.vvvv)</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

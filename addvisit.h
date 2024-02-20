@@ -28,6 +28,7 @@ private slots:
 private:
     Ui::AddVisit *ui;
     QStringList getData();
+    QString sortDate(QString date);
     int customerId;
 };
 

@@ -38,7 +38,7 @@ void AddVisit::on_saveBtn_clicked()
     query.prepare("INSERT INTO Information (customer_id, date, reason, operation, plan) "
                   "VALUES (:customer_id, :date, :reason, :operation, :plan)");
     query.bindValue(":customer_id", customerId);
-    query.bindValue(":date", data[0]);
+    query.bindValue(":date", sortDate(data[0]));
     query.bindValue(":reason", data[1]);
     query.bindValue(":operation", data[2]);
     query.bindValue(":plan", data[3]);
@@ -56,6 +56,27 @@ void AddVisit::on_saveBtn_clicked()
     ui->plainTextEditPlan->clear();
     this->close();
 }
+
+/**********
+ * FUNCTION
+ * Sort date into correct format
+***********/
+
+QString AddVisit::sortDate(QString date)
+{
+    QDate correctDate = QDate::fromString(date, "dd.MM.yyyy");
+
+    if (!correctDate.isValid()) {
+        qDebug() << "Invalid date format: " << date;
+        return QString(); // or handle the error in a way that makes sense for your application
+    }
+
+    QString iso8601Date = correctDate.toString("yyyy-MM-dd");
+    qDebug() << "ISO 8601 date: " << iso8601Date;
+
+    return iso8601Date;
+}
+
 
 /**********
  * FUNCTION
