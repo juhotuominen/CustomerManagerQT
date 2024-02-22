@@ -1,9 +1,12 @@
 #include "addcustomer.h"
 #include "ui_addcustomer.h"
+#include "ui_mainwindow.h"
+#include "mainwindow.h"
 
-AddCustomer::AddCustomer(QWidget *parent)
+AddCustomer::AddCustomer(MainWindow *mainWindow, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddCustomer)
+    , mainWindow(mainWindow)
 {
     ui->setupUi(this);
 }
@@ -20,9 +23,9 @@ AddCustomer::~AddCustomer()
  * TODO: refresh tableview on mainwindow after closing
 ***********/
 
-void AddCustomer::on_btnSave_clicked()
+void MainWindow::on_btnSave_clicked()
 {
-    QStringList data = getData();
+    QStringList data = ptrAddCustomer->getData();
 
     QSqlQuery query;
     query.prepare("INSERT INTO Customers (FirstName, LastName, SocialSecurity, Address, Phone, Email, Profession, Hobbies, Diseases, Medication) "
@@ -44,7 +47,7 @@ void AddCustomer::on_btnSave_clicked()
         return;
     }
 
-    emit customerAdded();
+    emit ptrAddCustomer->customerAdded();
 
     ui->lineEditAddress->clear();
     ui->lineEditDiseases->clear();
@@ -56,8 +59,6 @@ void AddCustomer::on_btnSave_clicked()
     ui->lineEditPhone->clear();
     ui->lineEditProfession->clear();
     ui->lineEditSocialsecurity->clear();
-
-    this->close();
 }
 
 /**********
@@ -68,16 +69,16 @@ void AddCustomer::on_btnSave_clicked()
 QStringList AddCustomer::getData()
 {
     QStringList data;
-    data << ui->lineEditFirstname->text()
-         << ui->lineEditLastname->text()
-         << ui->lineEditSocialsecurity->text()
-         << ui->lineEditAddress->text()
-         << ui->lineEditPhone->text()
-         << ui->lineEditEmail->text()
-         << ui->lineEditProfession->text()
-         << ui->lineEditHobbies->text()
-         << ui->lineEditDiseases->text()
-         << ui->lineEditMedication->text();
+    data << mainWindow->ui->lineEditFirstname_2->text()
+         << mainWindow->ui->lineEditLastname_2->text()
+         << mainWindow->ui->lineEditSocialsecurity_2->text()
+         << mainWindow->ui->lineEditAddress_2->text()
+         << mainWindow->ui->lineEditPhone_2->text()
+         << mainWindow->ui->lineEditEmail_2->text()
+         << mainWindow->ui->lineEditProfession_2->text()
+         << mainWindow->ui->lineEditHobbies_2->text()
+         << mainWindow->ui->lineEditDiseases_2->text()
+         << mainWindow->ui->lineEditMedication_2->text();
 
     return data;
 }
@@ -87,7 +88,7 @@ QStringList AddCustomer::getData()
  * Close window without saving and clear data
 ***********/
 
-void AddCustomer::on_btnCancel_clicked()
+void MainWindow::on_btnCancel_clicked()
 {
     ui->lineEditAddress->clear();
     ui->lineEditDiseases->clear();
@@ -99,7 +100,5 @@ void AddCustomer::on_btnCancel_clicked()
     ui->lineEditPhone->clear();
     ui->lineEditProfession->clear();
     ui->lineEditSocialsecurity->clear();
-
-    this->close();
 }
 

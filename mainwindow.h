@@ -7,6 +7,7 @@
 #include <QtDebug>
 #include <QFileInfo>
 
+#include "addvisit.h"
 #include "addcustomer.h"
 #include "customerinfo.h"
 #include "qtablewidget.h"
@@ -24,6 +25,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    Ui::MainWindow *ui;
 
 private slots:
 
@@ -43,13 +45,31 @@ private slots:
 
     void onCustomerAdded();
 
+
+    void onLineEditTextChanged(const QString &arg1);
+
+    void on_cancelButton_clicked();
+
+    void on_saveButton_clicked();
+
+    void on_addVisitButton_clicked();
+
+    void on_refreshButton_clicked();
+
+    void onVisitAdded();
+
+    void on_btnSave_clicked();
+
+    void on_btnCancel_clicked();
+
 private:
-    Ui::MainWindow *ui;
 
     AddCustomer *ptrAddCustomer;
     CustomerInfo *ptrCustomerInfo;
+    AddVisit *ptrAddVisit;
     QSqlDatabase DB;
-    QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
-    //QString path_to_db = "D:/SQLite/Customers.db"; //DEV
+
+    //QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
+    QString path_to_db = "D:/SQLite/Customers.db"; //DEV
 };
 #endif // MAINWINDOW_H

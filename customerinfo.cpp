@@ -2,37 +2,18 @@
 #include "qsqlerror.h"
 #include "qsqlquery.h"
 #include "ui_customerinfo.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
-CustomerInfo::CustomerInfo(QWidget *parent)
+CustomerInfo::CustomerInfo(MainWindow *mainWindow, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CustomerInfo)
+    , mainWindow(mainWindow)
 {
     ui->setupUi(this);
     ptrAddVisit = new AddVisit();
 
-    const QStringList lineEditObjectNames = {
-        "lineEditFirstname",
-        "lineEditLastname",
-        "lineEditSocialsecurity",
-        "lineEditAddress",
-        "lineEditPhone",
-        "lineEditEmail",
-        "lineEditProfession",
-        "lineEditHobbies",
-        "lineEditDiseases",
-        "lineEditMedication"
-    };
-
-    for (const QString& objectName : lineEditObjectNames) {
-        QLineEdit* lineEdit = findChild<QLineEdit*>(objectName);
-        if (lineEdit) {
-            connect(lineEdit, &QLineEdit::textEdited, this, &CustomerInfo::onLineEditTextChanged);
-        }
-    }
-
     ui->saveButton->setEnabled(false);
-
-    connect(ptrAddVisit, &AddVisit::visitAdded, this, &CustomerInfo::onVisitAdded);
 }
 
 CustomerInfo::~CustomerInfo()
@@ -145,17 +126,16 @@ void CustomerInfo::setCustomerInfo(QStringList customerInfo)
     QString diseases = customerInfo[8];
     QString medication = customerInfo[9];
 
-
-    ui->lineEditFirstname->setText(firstName);
-    ui->lineEditLastname->setText(lastName);
-    ui->lineEditSocialsecurity->setText(socialsecurity);
-    ui->lineEditAddress->setText(address);
-    ui->lineEditPhone->setText(phone);
-    ui->lineEditEmail->setText(email);
-    ui->lineEditProfession->setText(profession);
-    ui->lineEditHobbies->setText(hobbies);
-    ui->lineEditDiseases->setText(diseases);
-    ui->lineEditMedication->setText(medication);
+    mainWindow->ui->lineEditFirstname->setText(firstName);
+    mainWindow->ui->lineEditLastname->setText(lastName);
+    mainWindow->ui->lineEditSocialsecurity->setText(socialsecurity);
+    mainWindow->ui->lineEditAddress->setText(address);
+    mainWindow->ui->lineEditPhone->setText(phone);
+    mainWindow->ui->lineEditEmail->setText(email);
+    mainWindow->ui->lineEditProfession->setText(profession);
+    mainWindow->ui->lineEditHobbies->setText(hobbies);
+    mainWindow->ui->lineEditDiseases->setText(diseases);
+    mainWindow->ui->lineEditMedication->setText(medication);
 }
 
 
@@ -184,7 +164,23 @@ void CustomerInfo::setCustomerVisitInfo(QStringList customerVisitInfo)
         }
     }
 
-    ui->textBrowser->setHtml(formattedText);
+    mainWindow->ui->textBrowser->setHtml(formattedText);
+}
+
+
+/**********
+ * FUNCTION
+ * Pressing enter is same as clicking search
+***********/
+
+void MainWindow::on_lineEditSearch_editingFinished()
+{
+    on_btnSearch_clicked();
+}
+
+void MainWindow::onCustomerAdded()
+{
+    on_btnGet_clicked();
 }
 
 
@@ -193,22 +189,16 @@ void CustomerInfo::setCustomerVisitInfo(QStringList customerVisitInfo)
  * Make save button visible if text is edited
 ***********/
 
-void CustomerInfo::onLineEditTextChanged(const QString &text)
+void MainWindow::onLineEditTextChanged(const QString &arg1)
 {
-    Q_UNUSED(text); // Unused parameter to avoid compiler warnings
+    Q_UNUSED(arg1); // Unused parameter to avoid compiler warnings
     ui->saveButton->setEnabled(true);
 }
 
 
-/**********
- * FUNCTION
- * Close window without saving
-***********/
-
-void CustomerInfo::on_cancelButton_clicked()
+void MainWindow::on_cancelButton_clicked()
 {
     ui->saveButton->setEnabled(false);
-    this->close();
 }
 
 /**********
@@ -216,13 +206,12 @@ void CustomerInfo::on_cancelButton_clicked()
  * Save modified customer infos
 ***********/
 
-void CustomerInfo::on_saveButton_clicked()
+void MainWindow::on_saveButton_clicked()
 {
-
     QSqlQuery query;
     query.prepare("UPDATE Customers SET Firstname = :firstname, Lastname = :lastname, SocialSecurity = :socialsecurity, Address = :address, Phone = :phone, Email = :email, Profession = :profession, Hobbies = :hobbies, Diseases = :diseases, Medication = :medication WHERE id = :customerid");
 
-    query.bindValue(":customerid", publicId);
+    query.bindValue(":customerid", ptrCustomerInfo->publicId);
     query.bindValue(":firstname", ui->lineEditFirstname->text());
     query.bindValue(":lastname", ui->lineEditLastname->text());
     query.bindValue(":socialsecurity", ui->lineEditSocialsecurity->text());
@@ -241,38 +230,28 @@ void CustomerInfo::on_saveButton_clicked()
     }
 
     ui->saveButton->setEnabled(false);
-    this->close();
 }
+
 
 /**********
  * FUNCTION
  * set customerId and open AddVisit page
 ***********/
 
-void CustomerInfo::on_addVisitButton_clicked()
+void MainWindow::on_addVisitButton_clicked()
 {
-    ptrAddVisit->setCustomerId(getCustomerId());
-
+    ptrAddVisit->setCustomerId(ptrCustomerInfo->getCustomerId());
     ptrAddVisit->show();
 }
 
-/**********
- * FUNCTION
- * Refresh customers
-***********/
 
-void CustomerInfo::on_refreshButton_clicked()
+void MainWindow::on_refreshButton_clicked()
 {
-    getCustomerVisitInfo(getCustomerId());
+    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
 }
 
-/**********
- * FUNCTION
- * Auto update when new visit is added
-***********/
-
-void CustomerInfo::onVisitAdded()
+void MainWindow::onVisitAdded()
 {
-    getCustomerVisitInfo(getCustomerId());
+    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
 }
 

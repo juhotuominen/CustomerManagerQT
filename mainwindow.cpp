@@ -13,8 +13,31 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->setStyle(QStyleFactory::create("Fusion"));
 
     ui->setupUi(this);
-    ptrAddCustomer = new AddCustomer();
-    ptrCustomerInfo = new CustomerInfo();
+    ptrAddCustomer = new AddCustomer(this);
+    ptrCustomerInfo = new CustomerInfo(this);
+    ptrAddVisit = new AddVisit();
+
+    const QStringList lineEditObjectNames = {
+        "lineEditFirstname",
+        "lineEditLastname",
+        "lineEditSocialsecurity",
+        "lineEditAddress",
+        "lineEditPhone",
+        "lineEditEmail",
+        "lineEditProfession",
+        "lineEditHobbies",
+        "lineEditDiseases",
+        "lineEditMedication"
+    };
+
+    for (const QString& objectName : lineEditObjectNames) {
+        QLineEdit* lineEdit = findChild<QLineEdit*>(objectName);
+        if (lineEdit) {
+            connect(lineEdit, &QLineEdit::textEdited, this, &MainWindow::onLineEditTextChanged);
+        }
+    }
+
+    connect(ptrAddVisit, &AddVisit::visitAdded, this, &MainWindow::onVisitAdded);
 
     setupTableWidget();
 
@@ -36,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->labelStatus->setText("Failed to open the database!");
     }
 
+    ui->saveButton->setEnabled(false);
     connect(ptrAddCustomer, &AddCustomer::customerAdded, this, &MainWindow::onCustomerAdded);
     on_btnGet_clicked();
 }
@@ -92,6 +116,7 @@ void MainWindow::on_btnRemove_clicked()
         {
             ui->tableWidget->removeRow(currentRow);
             QMessageBox::information(this, "Remove Row", "Asiakas poistettu");
+            ui->stackedWidget->setCurrentIndex(0);
         }
         else
         {
@@ -181,18 +206,6 @@ void MainWindow::on_btnSearch_clicked()
 
 /**********
  * FUNCTION
- * Add new customer.
- * Opens a new window for customer adding.
-***********/
-
-void MainWindow::on_btnAddCustomer_clicked()
-{
-    ptrAddCustomer->show();
-    on_btnGet_clicked();
-}
-
-/**********
- * FUNCTION
  * Double-click column to show customer
  * spesific info on a new window.
 ***********/
@@ -206,22 +219,21 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
     // Update CustomerInfoTab with the retrieved information
     ptrCustomerInfo->setCustomerInfo(customerInfo);
 
-    ptrCustomerInfo->show();
+    // Clear the existing layout before adding the CustomerInfo widget
+
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
 /**********
  * FUNCTION
- * Pressing enter is same as clicking search
+ * Add new customer.
+ * Opens a new window for customer adding.
 ***********/
 
-void MainWindow::on_lineEditSearch_editingFinished()
+void MainWindow::on_btnAddCustomer_clicked()
 {
-    on_btnSearch_clicked();
-}
-
-void MainWindow::onCustomerAdded()
-{
+    ui->stackedWidget->setCurrentIndex(2);
     on_btnGet_clicked();
 }
 

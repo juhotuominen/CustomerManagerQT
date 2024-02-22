@@ -5,6 +5,8 @@
 #include <QtSql>
 #include <QMessageBox>
 
+class MainWindow;
+
 namespace Ui {
 class AddCustomer;
 }
@@ -17,17 +19,15 @@ signals:
     void customerAdded();
 
 public:
-    explicit AddCustomer(QWidget *parent = nullptr);
+    explicit AddCustomer(MainWindow *mainWindow, QWidget *parent = nullptr);
     ~AddCustomer();
+    QStringList getData();
 
 private slots:
-    void on_btnSave_clicked();
-
-    void on_btnCancel_clicked();
 
 private:
-    Ui::AddCustomer *ui;
-    QStringList getData();
+    Ui::AddCustomer *ui; 
+    MainWindow *mainWindow;
 };
 
 #endif // ADDCUSTOMER_H

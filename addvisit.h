@@ -6,6 +6,8 @@
 #include <QtSql>
 #include <QMessageBox>
 
+
+
 namespace Ui {
 class AddVisit;
 }
@@ -25,13 +27,14 @@ public:
 private slots:
     void on_saveBtn_clicked();
 
-
     void on_cancelBtn_clicked();
+
+    void on_calendarWidget_clicked(const QDate &date);
 
 private:
     Ui::AddVisit *ui;
     QStringList getData();
-    QString sortDate(QString date);
+    QString selectedDate;
     int customerId;
 };
 
