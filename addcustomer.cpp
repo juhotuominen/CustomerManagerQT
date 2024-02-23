@@ -49,16 +49,17 @@ void MainWindow::on_btnSave_clicked()
 
     emit ptrAddCustomer->customerAdded();
 
-    ui->lineEditAddress->clear();
-    ui->lineEditDiseases->clear();
-    ui->lineEditEmail->clear();
-    ui->lineEditFirstname->clear();
-    ui->lineEditLastname->clear();
-    ui->lineEditHobbies->clear();
-    ui->lineEditMedication->clear();
-    ui->lineEditPhone->clear();
-    ui->lineEditProfession->clear();
-    ui->lineEditSocialsecurity->clear();
+    ui->lineEditAddress_2->clear();
+    ui->lineEditDiseases_2->clear();
+    ui->lineEditEmail_2->clear();
+    ui->lineEditFirstname_2->clear();
+    ui->lineEditLastname_2->clear();
+    ui->lineEditHobbies_2->clear();
+    ui->lineEditMedication_2->clear();
+    ui->lineEditPhone_2->clear();
+    ui->lineEditProfession_2->clear();
+    ui->lineEditSocialsecurity_2->clear();
+
 }
 
 /**********
@@ -90,15 +91,15 @@ QStringList AddCustomer::getData()
 
 void MainWindow::on_btnCancel_clicked()
 {
-    ui->lineEditAddress->clear();
-    ui->lineEditDiseases->clear();
-    ui->lineEditEmail->clear();
-    ui->lineEditFirstname->clear();
-    ui->lineEditLastname->clear();
-    ui->lineEditHobbies->clear();
-    ui->lineEditMedication->clear();
-    ui->lineEditPhone->clear();
-    ui->lineEditProfession->clear();
-    ui->lineEditSocialsecurity->clear();
+    ui->lineEditAddress_2->clear();
+    ui->lineEditDiseases_2->clear();
+    ui->lineEditEmail_2->clear();
+    ui->lineEditFirstname_2->clear();
+    ui->lineEditLastname_2->clear();
+    ui->lineEditHobbies_2->clear();
+    ui->lineEditMedication_2->clear();
+    ui->lineEditPhone_2->clear();
+    ui->lineEditProfession_2->clear();
+    ui->lineEditSocialsecurity_2->clear();
 }
 

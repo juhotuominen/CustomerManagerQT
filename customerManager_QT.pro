@@ -22,9 +22,7 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
-    addcustomer.ui \
     addvisit.ui \
-    customerinfo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

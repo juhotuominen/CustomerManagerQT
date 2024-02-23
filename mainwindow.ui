@@ -10,6 +10,11 @@
     <height>610</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <bold>false</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Asiakas Hallinta</string>
   </property>
@@ -18,7 +23,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>450</y>
+      <y>490</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -31,7 +36,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>450</y>
+      <y>490</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -44,7 +49,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>530</y>
+      <y>570</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -57,7 +62,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>120</y>
+      <y>160</y>
       <width>281</width>
       <height>311</height>
      </rect>
@@ -85,7 +90,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>60</y>
+      <y>100</y>
       <width>231</width>
       <height>24</height>
      </rect>
@@ -95,7 +100,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>60</y>
+      <y>100</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -108,7 +113,7 @@
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>440</y>
+      <y>480</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -125,6 +130,9 @@
       <width>561</width>
       <height>581</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -168,6 +176,7 @@
         <property name="font">
          <font>
           <pointsize>9</pointsize>
+          <bold>false</bold>
          </font>
         </property>
        </widget>
@@ -298,6 +307,7 @@
         <property name="font">
          <font>
           <pointsize>20</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -437,6 +447,7 @@
         <property name="font">
          <font>
           <pointsize>20</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -504,8 +515,8 @@
      <widget class="QLineEdit" name="lineEditFirstname_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>70</y>
+        <x>140</x>
+        <y>130</y>
         <width>371</width>
         <height>24</height>
        </rect>
@@ -514,8 +525,8 @@
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>220</y>
+        <x>60</x>
+        <y>280</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -527,8 +538,8 @@
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>350</y>
+        <x>60</x>
+        <y>410</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -540,8 +551,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>190</y>
+        <x>60</x>
+        <y>250</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -553,8 +564,8 @@
      <widget class="QPushButton" name="btnCancel">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>450</y>
+        <x>340</x>
+        <y>510</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -566,8 +577,8 @@
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>160</y>
+        <x>60</x>
+        <y>220</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -579,8 +590,8 @@
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>390</y>
+        <x>60</x>
+        <y>450</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -592,8 +603,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>100</y>
+        <x>60</x>
+        <y>160</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -605,8 +616,8 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>70</y>
+        <x>60</x>
+        <y>130</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -618,8 +629,8 @@
      <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>310</y>
+        <x>60</x>
+        <y>370</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -631,8 +642,8 @@
      <widget class="QLineEdit" name="lineEditDiseases_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>310</y>
+        <x>140</x>
+        <y>370</y>
         <width>171</width>
         <height>24</height>
        </rect>
@@ -641,8 +652,8 @@
      <widget class="QLineEdit" name="lineEditMedication_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>350</y>
+        <x>140</x>
+        <y>410</y>
         <width>171</width>
         <height>24</height>
        </rect>
@@ -651,8 +662,8 @@
      <widget class="QLineEdit" name="lineEditSocialsecurity_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>130</y>
+        <x>140</x>
+        <y>190</y>
         <width>371</width>
         <height>24</height>
        </rect>
@@ -661,8 +672,8 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>130</y>
+        <x>60</x>
+        <y>190</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -674,8 +685,8 @@
      <widget class="QPushButton" name="btnSave">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>450</y>
+        <x>440</x>
+        <y>510</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -687,8 +698,8 @@
      <widget class="QLineEdit" name="lineEditHobbies_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>390</y>
+        <x>140</x>
+        <y>450</y>
         <width>171</width>
         <height>24</height>
        </rect>
@@ -697,8 +708,8 @@
      <widget class="QLineEdit" name="lineEditProfession_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>270</y>
+        <x>140</x>
+        <y>330</y>
         <width>171</width>
         <height>24</height>
        </rect>
@@ -707,8 +718,8 @@
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>270</y>
+        <x>60</x>
+        <y>330</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -720,8 +731,8 @@
      <widget class="QLineEdit" name="lineEditPhone_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>190</y>
+        <x>140</x>
+        <y>250</y>
         <width>371</width>
         <height>24</height>
        </rect>
@@ -730,8 +741,8 @@
      <widget class="QLineEdit" name="lineEditEmail_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>220</y>
+        <x>140</x>
+        <y>280</y>
         <width>371</width>
         <height>24</height>
        </rect>
@@ -740,8 +751,8 @@
      <widget class="QLineEdit" name="lineEditLastname_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>100</y>
+        <x>140</x>
+        <y>160</y>
         <width>371</width>
         <height>24</height>
        </rect>
@@ -750,14 +761,54 @@
      <widget class="QLineEdit" name="lineEditAddress_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>160</y>
+        <x>140</x>
+        <y>220</y>
         <width>371</width>
         <height>24</height>
        </rect>
       </property>
      </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>521</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>28</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>          Lisää uusi asiakas</string>
+      </property>
+     </widget>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>421</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>         Asiakkaat</string>
+    </property>
    </widget>
   </widget>
  </widget>
