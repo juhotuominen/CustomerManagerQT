@@ -38,6 +38,26 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
+    const QStringList lineEditObjectNames2 = {
+        "lineEditFirstname_2",
+        "lineEditLastname_2",
+        "lineEditSocialsecurity_2",
+        "lineEditAddress_2",
+        "lineEditPhone_2",
+        "lineEditEmail_2",
+        "lineEditProfession_2",
+        "lineEditHobbies_2",
+        "lineEditDiseases_2",
+        "lineEditMedication_2"
+    };
+
+    for (const QString& objectName : lineEditObjectNames2) {
+        QLineEdit* lineEdit2 = findChild<QLineEdit*>(objectName);
+        if (lineEdit2) {
+            connect(lineEdit2, &QLineEdit::textEdited, this, &MainWindow::onLineEditTextChanged2);
+        }
+    }
+
     connect(ptrAddVisit, &AddVisit::visitAdded, this, &MainWindow::onVisitAdded);
     connect(ptrEditVisit, &EditVisit::visitEdited, this, &MainWindow::onVisitEdited);
 
@@ -62,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     ui->saveButton->setEnabled(false);
+    ui->btnSave->setEnabled(false);
+
     connect(ptrAddCustomer, &AddCustomer::customerAdded, this, &MainWindow::onCustomerAdded);
     on_btnGet_clicked();
 }
@@ -125,7 +147,7 @@ void MainWindow::on_btnRemove_clicked()
             {
                 ui->tableWidget->removeRow(currentRow);
                 QMessageBox::information(this, "Remove Row", "Asiakas poistettu");
-                ui->stackedWidget->setCurrentIndex(0);
+                ui->stackedWidget->setCurrentIndex(2);
             }
             else
             {
@@ -215,26 +237,6 @@ void MainWindow::on_btnSearch_clicked()
     }
 }
 
-/**********
- * FUNCTION
- * Double-click column to show customer
- * spesific info on a new window.
-***********/
-
-void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
-{
-    int customerId = ui->tableWidget->item(item->row(), 0)->text().toInt();
-
-    QStringList customerInfo = ptrCustomerInfo->getCustomerInfo(customerId);
-
-    // Update CustomerInfoTab with the retrieved information
-    ptrCustomerInfo->setCustomerInfo(customerInfo);
-
-    // Clear the existing layout before adding the CustomerInfo widget
-
-    ui->stackedWidget->setCurrentIndex(1);
-}
-
 
 /**********
  * FUNCTION
@@ -262,7 +264,7 @@ void MainWindow::on_pushButton_clicked()
 
 /**********
  * FUNCTION
- * Update when visitAdded signal is emitted
+ * Update when signals are emitted
  *
 ***********/
 
@@ -275,5 +277,26 @@ void MainWindow::onVisitAdded()
 void MainWindow::onVisitEdited()
 {
     ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
+}
+
+
+/**********
+ * FUNCTION
+ * Click column to show customer
+ * spesific info on a new window.
+***********/
+
+void MainWindow::on_tableWidget_itemClicked(QTableWidgetItem *item)
+{
+    int customerId = ui->tableWidget->item(item->row(), 0)->text().toInt();
+
+    QStringList customerInfo = ptrCustomerInfo->getCustomerInfo(customerId);
+
+    // Update CustomerInfoTab with the retrieved information
+    ptrCustomerInfo->setCustomerInfo(customerInfo);
+
+    // Clear the existing layout before adding the CustomerInfo widget
+
+    ui->stackedWidget->setCurrentIndex(1);
 }
 

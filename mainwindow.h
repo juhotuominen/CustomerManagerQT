@@ -34,13 +34,9 @@ private slots:
 
     void on_btnRemove_clicked();
 
-    void on_btnGet_clicked();
-
     void on_btnSearch_clicked();
 
     void on_btnAddCustomer_clicked();
-
-    void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
     void on_lineEditSearch_editingFinished();
 
@@ -48,6 +44,8 @@ private slots:
 
 
     void onLineEditTextChanged(const QString &arg1);
+
+    void onLineEditTextChanged2(const QString &arg1);
 
     void on_cancelButton_clicked();
 
@@ -65,6 +63,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_tableWidget_itemClicked(QTableWidgetItem *item);
+
 private:
 
     AddCustomer *ptrAddCustomer;
@@ -72,8 +72,9 @@ private:
     AddVisit *ptrAddVisit;
     EditVisit *ptrEditVisit;
     QSqlDatabase DB;
+    void on_btnGet_clicked();
 
-    //QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
-    QString path_to_db = "D:/SQLite/Customers.db"; //DEV
+    QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
+    //QString path_to_db = "D:/SQLite/Customers.db"; //DEV
 };
 #endif // MAINWINDOW_H

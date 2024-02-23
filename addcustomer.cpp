@@ -60,6 +60,8 @@ void MainWindow::on_btnSave_clicked()
     ui->lineEditProfession_2->clear();
     ui->lineEditSocialsecurity_2->clear();
 
+    ui->btnSave->setEnabled(false);
+
 }
 
 /**********
@@ -101,5 +103,7 @@ void MainWindow::on_btnCancel_clicked()
     ui->lineEditPhone_2->clear();
     ui->lineEditProfession_2->clear();
     ui->lineEditSocialsecurity_2->clear();
+
+    ui->btnSave->setEnabled(false);
 }
 

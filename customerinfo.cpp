@@ -187,7 +187,7 @@ void MainWindow::onCustomerAdded()
 
 /**********
  * FUNCTION
- * Make save button visible if text is edited
+ * Make save buttons visible if text is edited
 ***********/
 
 void MainWindow::onLineEditTextChanged(const QString &arg1)
@@ -196,6 +196,11 @@ void MainWindow::onLineEditTextChanged(const QString &arg1)
     ui->saveButton->setEnabled(true);
 }
 
+void MainWindow::onLineEditTextChanged2(const QString &arg1)
+{
+    Q_UNUSED(arg1); // Unused parameter to avoid compiler warnings
+    ui->btnSave->setEnabled(true);
+}
 
 void MainWindow::on_cancelButton_clicked()
 {
@@ -230,6 +235,7 @@ void MainWindow::on_saveButton_clicked()
         qDebug() << "Error updating row:" << query.lastError().text();
     }
 
+    on_btnGet_clicked();
     ui->saveButton->setEnabled(false);
 }
 
