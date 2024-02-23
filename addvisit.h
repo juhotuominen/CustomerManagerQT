@@ -23,6 +23,10 @@ public:
     explicit AddVisit(QWidget *parent = nullptr);
     ~AddVisit();
     void setCustomerId(int id);
+    void setEditableData(int visitId);
+    QStringList getDatabaseData(int id);
+    bool editMode = false;
+    int publicVisitId;
 
 private slots:
     void on_saveBtn_clicked();

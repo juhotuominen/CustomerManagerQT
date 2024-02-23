@@ -10,6 +10,7 @@
 #include "addvisit.h"
 #include "addcustomer.h"
 #include "customerinfo.h"
+#include "editvisit.h"
 #include "qtablewidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -54,19 +55,22 @@ private slots:
 
     void on_addVisitButton_clicked();
 
-    void on_refreshButton_clicked();
-
     void onVisitAdded();
+
+    void onVisitEdited();
 
     void on_btnSave_clicked();
 
     void on_btnCancel_clicked();
+
+    void on_pushButton_clicked();
 
 private:
 
     AddCustomer *ptrAddCustomer;
     CustomerInfo *ptrCustomerInfo;
     AddVisit *ptrAddVisit;
+    EditVisit *ptrEditVisit;
     QSqlDatabase DB;
 
     //QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE

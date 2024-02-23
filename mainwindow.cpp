@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ptrAddCustomer = new AddCustomer(this);
     ptrCustomerInfo = new CustomerInfo(this);
     ptrAddVisit = new AddVisit();
+    ptrEditVisit = new EditVisit();
 
     const QStringList lineEditObjectNames = {
         "lineEditFirstname",
@@ -38,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     connect(ptrAddVisit, &AddVisit::visitAdded, this, &MainWindow::onVisitAdded);
+    connect(ptrEditVisit, &EditVisit::visitEdited, this, &MainWindow::onVisitEdited);
 
     setupTableWidget();
 
@@ -106,21 +108,29 @@ void MainWindow::on_btnRemove_clicked()
 
     if (currentRow >= 0)
     {
-        QString id = ui->tableWidget->item(currentRow, 0)->text();
+        // Ask for confirmation
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Confirm Deletion", "Haluatko varmasti poistaa asiakkaan?",
+                                      QMessageBox::Yes | QMessageBox::No);
 
-        QSqlQuery query;
-        query.prepare("DELETE FROM Customers WHERE ID = :id");
-        query.bindValue(":id", id);
+        if (reply == QMessageBox::Yes)
+        {
+            QString id = ui->tableWidget->item(currentRow, 0)->text();
 
-        if (query.exec())
-        {
-            ui->tableWidget->removeRow(currentRow);
-            QMessageBox::information(this, "Remove Row", "Asiakas poistettu");
-            ui->stackedWidget->setCurrentIndex(0);
-        }
-        else
-        {
-            QMessageBox::critical(this, "Database Error", "Failed to remove row from the database:\n" + query.lastError().text());
+            QSqlQuery query;
+            query.prepare("DELETE FROM Customers WHERE ID = :id");
+            query.bindValue(":id", id);
+
+            if (query.exec())
+            {
+                ui->tableWidget->removeRow(currentRow);
+                QMessageBox::information(this, "Remove Row", "Asiakas poistettu");
+                ui->stackedWidget->setCurrentIndex(0);
+            }
+            else
+            {
+                QMessageBox::critical(this, "Database Error", "Failed to remove row from the database:\n" + query.lastError().text());
+            }
         }
     }
     else
@@ -128,6 +138,7 @@ void MainWindow::on_btnRemove_clicked()
         QMessageBox::information(this, "Remove Row", "Poistettavaa asiakasta ei valittu");
     }
 }
+
 
 
 /**********
@@ -235,5 +246,34 @@ void MainWindow::on_btnAddCustomer_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
     on_btnGet_clicked();
+}
+
+/**********
+ * FUNCTION
+ * Edit customer visits
+ * Opens a new window for customer visit editing.
+***********/
+
+void MainWindow::on_pushButton_clicked()
+{
+    ptrEditVisit->getCustomerVisitInfo(ptrCustomerInfo->publicId);
+    ptrEditVisit->show();
+}
+
+/**********
+ * FUNCTION
+ * Update when visitAdded signal is emitted
+ *
+***********/
+
+
+void MainWindow::onVisitAdded()
+{
+    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
+}
+
+void MainWindow::onVisitEdited()
+{
+    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
 }
 

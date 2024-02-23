@@ -82,7 +82,7 @@ QStringList CustomerInfo::getCustomerInfo(int customerId)
 void CustomerInfo::getCustomerVisitInfo(int customerId)
 {
     QSqlQuery query;
-    query.prepare("SELECT reason, operation, plan, date FROM Information WHERE customer_id = :customerid ORDER BY STRFTIME('%Y-%m-%d', date) DESC");
+    query.prepare("SELECT id, reason, operation, plan, date FROM Information WHERE customer_id = :customerid ORDER BY STRFTIME('%Y-%m-%d', date) DESC");
     query.bindValue(":customerid", customerId);
 
     QStringList visitData;
@@ -94,6 +94,7 @@ void CustomerInfo::getCustomerVisitInfo(int customerId)
                       << query.value("reason").toString()
                       << query.value("operation").toString()
                       << query.value("plan").toString();
+
         }
 
         if (visitData.isEmpty()) {
@@ -245,13 +246,4 @@ void MainWindow::on_addVisitButton_clicked()
 }
 
 
-void MainWindow::on_refreshButton_clicked()
-{
-    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
-}
-
-void MainWindow::onVisitAdded()
-{
-    ptrCustomerInfo->getCustomerVisitInfo(ptrCustomerInfo->getCustomerId());
-}
 

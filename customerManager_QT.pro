@@ -12,6 +12,7 @@ SOURCES += \
     addcustomer.cpp \
     addvisit.cpp \
     customerinfo.cpp \
+    editvisit.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -19,10 +20,12 @@ HEADERS += \
     addcustomer.h \
     addvisit.h \
     customerinfo.h \
+    editvisit.h \
     mainwindow.h
 
 FORMS += \
     addvisit.ui \
+    editvisit.ui \
     mainwindow.ui
 
 # Default rules for deployment.
