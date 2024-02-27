@@ -74,7 +74,7 @@ private:
     QSqlDatabase DB;
     void on_btnGet_clicked();
 
-    QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
-    //QString path_to_db = "D:/SQLite/Customers.db"; //DEV
+    //QString path_to_db = "./database/CustomersDeploy.db"; //RELEASE
+    QString path_to_db = "D:/SQLite/Customers.db"; //DEV
 };
 #endif // MAINWINDOW_H

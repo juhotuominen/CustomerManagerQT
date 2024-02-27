@@ -65,6 +65,9 @@
      <height>24</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(124, 124, 0);</string>
+   </property>
    <property name="text">
     <string>Kumoa</string>
    </property>
@@ -77,6 +80,9 @@
      <width>80</width>
      <height>24</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(120, 80, 0);</string>
    </property>
    <property name="text">
     <string>Tallenna</string>

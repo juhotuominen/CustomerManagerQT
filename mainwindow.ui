@@ -28,6 +28,10 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(107, 0, 0);
+</string>
+    </property>
     <property name="text">
      <string>Poista</string>
     </property>
@@ -92,6 +96,9 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(120, 80, 0);</string>
+    </property>
     <property name="text">
      <string>Etsi</string>
     </property>
@@ -105,6 +112,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(120, 80, 0);</string>
+    </property>
     <property name="text">
      <string>Lisää asiakas</string>
     </property>
@@ -115,7 +125,7 @@
       <x>410</x>
       <y>10</y>
       <width>561</width>
-      <height>631</height>
+      <height>651</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -137,6 +147,9 @@
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -346,6 +359,9 @@
           <height>24</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(120, 80, 0);</string>
+        </property>
         <property name="text">
          <string>Tallenna</string>
         </property>
@@ -394,6 +410,9 @@
           <width>80</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(124, 124, 0);</string>
         </property>
         <property name="text">
          <string>Kumoa</string>
@@ -468,6 +487,9 @@
           <height>24</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(120, 80, 0);</string>
+        </property>
         <property name="text">
          <string>Lisää käynti</string>
         </property>
@@ -491,6 +513,9 @@
           <height>31</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(120, 80, 0);</string>
+        </property>
         <property name="text">
          <string>Muokkaa käyntejä</string>
         </property>
@@ -502,18 +527,21 @@
      <widget class="QLineEdit" name="lineEditFirstname_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>160</y>
+        <x>130</x>
+        <y>100</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>310</y>
+        <x>50</x>
+        <y>300</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -525,7 +553,7 @@
      <widget class="QLabel" name="label_21">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>50</x>
         <y>440</y>
         <width>61</width>
         <height>21</height>
@@ -538,8 +566,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>280</y>
+        <x>50</x>
+        <y>260</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -551,11 +579,14 @@
      <widget class="QPushButton" name="btnCancel">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>540</y>
+        <x>320</x>
+        <y>550</y>
         <width>80</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(124, 124, 0);</string>
       </property>
       <property name="text">
        <string>Kumoa</string>
@@ -564,8 +595,8 @@
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>250</y>
+        <x>50</x>
+        <y>220</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -577,7 +608,7 @@
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>50</x>
         <y>480</y>
         <width>71</width>
         <height>21</height>
@@ -590,8 +621,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>190</y>
+        <x>50</x>
+        <y>140</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -603,8 +634,8 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>160</y>
+        <x>50</x>
+        <y>100</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -616,7 +647,7 @@
      <widget class="QLabel" name="label_22">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>50</x>
         <y>400</y>
         <width>61</width>
         <height>21</height>
@@ -629,38 +660,47 @@
      <widget class="QLineEdit" name="lineEditDiseases_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>400</y>
-        <width>171</width>
+        <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditMedication_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>440</y>
-        <width>171</width>
+        <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditSocialsecurity_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>220</y>
+        <x>130</x>
+        <y>180</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>220</y>
+        <x>50</x>
+        <y>180</y>
         <width>49</width>
         <height>21</height>
        </rect>
@@ -672,11 +712,14 @@
      <widget class="QPushButton" name="btnSave">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>540</y>
+        <x>420</x>
+        <y>550</y>
         <width>80</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(120, 80, 0);</string>
       </property>
       <property name="text">
        <string>Tallenna</string>
@@ -685,27 +728,33 @@
      <widget class="QLineEdit" name="lineEditHobbies_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>480</y>
-        <width>171</width>
+        <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditProfession_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>360</y>
-        <width>171</width>
+        <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>50</x>
         <y>360</y>
         <width>61</width>
         <height>21</height>
@@ -718,41 +767,53 @@
      <widget class="QLineEdit" name="lineEditPhone_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>280</y>
+        <x>130</x>
+        <y>260</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditEmail_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>310</y>
+        <x>130</x>
+        <y>300</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditLastname_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>130</x>
+        <y>140</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEditAddress_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>250</y>
+        <x>130</x>
+        <y>220</y>
         <width>371</width>
         <height>24</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_23">
