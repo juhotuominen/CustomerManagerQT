@@ -1,7 +1,7 @@
 Customer manager made with QT and SQLite. Designed for healthcare use.  
 
 
-#Features  
+# Features  
 Add customers  
 Add visit for customer  
 Edit customer/visits  
