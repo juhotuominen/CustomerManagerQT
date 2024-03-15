@@ -1,11 +1,12 @@
+# README
 Customer manager made with QT and SQLite. Designed for healthcare use.  
 
 
-# Features  
+## Features  
 Add customers  
 Add visit for customer  
 Edit customer/visits  
-Search customers by Frist/Lastname or socialsecurity
+Search customers by First/Lastname or socialsecurity
 
 ![Näyttökuva 2024-03-15 112320](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/3f5b5e77-27bc-4df4-9fc9-416f286aae3c)
 ![Näyttökuva 2024-03-15 112435](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/a28ce71c-54b6-4706-9c51-716b536e97f2)
