@@ -8,8 +8,7 @@ Add visit for customer
 Edit customer/visits  
 Search customers by First/Lastname or socialsecurity
 
-![Näyttökuva 2024-03-15 112320](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/3f5b5e77-27bc-4df4-9fc9-416f286aae3c)
-![Näyttökuva 2024-03-15 112435](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/a28ce71c-54b6-4706-9c51-716b536e97f2)
-![Näyttökuva 2024-03-15 112445](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/67f188b7-956c-4989-98ef-cc296fffb369)
-![Näyttökuva 2024-03-15 112457](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/d9a2d5e5-7161-4234-b4fb-3d5fe8bf5153)
-![Näyttökuva 2024-03-15 112511](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/186d7e0a-2cef-4690-a2c0-a9b6b17e0e9e)
+![Näyttökuva 2024-03-15 113938](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/8275c076-e641-4e65-bb45-d0b4997d7692)
+![Näyttökuva 2024-03-15 113950](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/d6f3af58-c194-486e-bf46-0de4d990a8e6)
+![Näyttökuva 2024-03-15 114007](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/ea6cdd6f-ca38-4b7b-afb1-eae84107be65)
+![Näyttökuva 2024-03-15 114017](https://github.com/juhotuominen/CustomerManagerQT/assets/121948515/ec0b700b-3c10-445e-8da9-c54a93eee535)
